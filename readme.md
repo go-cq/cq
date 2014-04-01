@@ -4,7 +4,7 @@ A database/sql implementation for Cypher. Still in development (v0.1.0 released)
 If you'd like to use the new [gopkg.in](http://godoc.org/gopkg.in/docs.v1) semantic versioning system, I'm going to keep cq in v0.x for a bit longer until I firm up a few things in the API, so you can import with:
 
 ```go
-import "gopkg.in/wfreeman/cq.v0"
+import "gopkg.in/cq.v0"
 ```
 
 [![Build Status](https://travis-ci.org/wfreeman/cq.png?branch=master)](https://travis-ci.org/wfreeman/cq)
@@ -32,7 +32,7 @@ import (
 	"database/sql"
 	"log"
 	
-	_ "gopkg.in/wfreeman/cq.v0"
+	_ "gopkg.in/cq.v0"
 )
 
 func main() {
@@ -105,7 +105,7 @@ func main() {
 
 ## types subpackage
 
-database/sql out of the box doesn't implement many types to pass in as parameters or Scan() out of rows. Custom Cypher types are implemented in the `cq/types` subpackage (`import "gopkg.in/wfreeman/cq.v0/types"`). These custom types allow users of cq to `Scan()` types out of results, as well as pass types in as parameters.
+database/sql out of the box doesn't implement many types to pass in as parameters or Scan() out of rows. Custom Cypher types are implemented in the `cq/types` subpackage (`import "gopkg.in/cq.v0/types"`). These custom types allow users of cq to `Scan()` types out of results, as well as pass types in as parameters.
 
 | Go type			| Can be <br/>query parameter?	| cq wrapper, for Scan	| CypherType uint8 |
 |:------------------ |:------------------:|:--------------------- | --------------------- |
