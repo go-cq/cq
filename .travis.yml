@@ -1,9 +1,9 @@
 language: go
 go: 
-  - 1.2
+  - 1.2.2
   
 env:
-  - NEO_VERSION="2.0.5"
+  - NEO_VERSION="2.0.4"
   - NEO_VERSION="2.1.1"
 
 before_script:
