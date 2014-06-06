@@ -3,8 +3,8 @@ go:
   - 1.2
   
 env:
-  - NEO_VERSION="2.0.0"
-  - NEO_VERSION="2.0.1"
+  - NEO_VERSION="2.0.5"
+  - NEO_VERSION="2.1.1"
 
 before_script:
   - go get launchpad.net/gocheck
@@ -16,10 +16,6 @@ before_install:
   - wget dist.neo4j.org/neo4j-community-$NEO_VERSION-unix.tar.gz
   - tar -xzf neo4j-community-$NEO_VERSION-unix.tar.gz
   - echo "org.neo4j.server.transaction.timeout=1" >> neo4j-community-$NEO_VERSION/conf/neo4j-server.properties
-  - git clone https://github.com/jexp/neo4j-in-memory-server
-  - cd neo4j-in-memory-server
-  - ./copy.sh ../neo4j-community-$NEO_VERSION 
-  - cd ..
   - neo4j-community-$NEO_VERSION/bin/neo4j start
 
 script:
@@ -33,4 +29,4 @@ script:
   - go get github.com/axw/gocov/gocov
   - go get github.com/mattn/goveralls
   - export PATH=$PATH:$HOME/gopath/bin/
-  - goveralls -coverprofile=bench.out rgaztLT7pidhfXGLbQz3bMowiBeB1XJlS
+  - goveralls -coverprofile=bench.out dnUcDUidJs3n9UP0saMUWb6Hj0Z336AwR
