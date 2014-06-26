@@ -9,7 +9,7 @@ import "gopkg.in/cq.v0"
 
 [![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=master)](https://travis-ci.org/go-cq/cq)
 [![Coverage Status](https://coveralls.io/repos/go-cq/cq/badge.png?branch=HEAD)](https://coveralls.io/r/go-cq/cq?branch=HEAD)
-[![Waffle](https://badge.waffle.io/wfreeman/cq.png?label=ready)](https://waffle.io/wfreeman/cq)
+[![Waffle](https://badge.waffle.io/go-cq/cq.png?label=ready)](https://waffle.io/go-cq/cq)
 
 Thanks to [Baron](http://twitter.com/xaprb), [Mike](http://twitter.com/mikearpaia), and [Jason](https://github.com/jmcvetta) for the ideas/motivation to start on this project. Cypher is close enough to SQL that it seems to fit pretty well in the idiomatic database/sql implementation.
 
