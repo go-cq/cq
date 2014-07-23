@@ -1,11 +1,11 @@
-package cq_test
+package cq
 
 import (
 	"log"
 	"time"
 
 	. "gopkg.in/check.v1"
-	_ "gopkg.in/cq.v1"
+	//	_ "gopkg.in/cq.v1"
 )
 
 // This file is meant to hold integration tests where cq must be imported as _

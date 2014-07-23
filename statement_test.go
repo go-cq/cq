@@ -10,7 +10,7 @@ type StatementSuite struct{}
 
 var _ = Suite(&StatementSuite{})
 
-func prepareTest(query string) driver.Stmt {
+func prepareStmtTest(query string) driver.Stmt {
 	db := openTest()
 	if db == nil {
 		log.Fatal("can't connect to test db: ", testURL)
@@ -23,7 +23,7 @@ func prepareTest(query string) driver.Stmt {
 }
 
 func (s *StatementSuite) TestQuerySimple(c *C) {
-	stmt := prepareTest("return 1")
+	stmt := prepareStmtTest("return 1")
 	rows, err := stmt.Query([]driver.Value{})
 	c.Assert(err, IsNil)
 	dest := make([]driver.Value, 1)

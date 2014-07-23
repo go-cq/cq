@@ -1,4 +1,4 @@
-package cq_test
+package cq
 
 import (
 	"database/sql"
