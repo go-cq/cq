@@ -8,7 +8,7 @@ import "gopkg.in/cq.v1"
 ```
 
 [![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=master)](https://travis-ci.org/go-cq/cq)
-[![Coverage Status](https://coveralls.io/repos/go-cq/cq/badge.png?branch=HEAD)](https://coveralls.io/r/go-cq/cq?branch=HEAD)
+[![Coverage Status](https://img.shields.io/coveralls/go-cq/cq.svg)](https://coveralls.io/r/go-cq/cq?branch=master)
 [![Waffle](https://badge.waffle.io/go-cq/cq.png?label=ready)](https://waffle.io/go-cq/cq)
 [![Gitter chat](https://badges.gitter.im/go-cq/cq.png)](https://gitter.im/go-cq/cq)
 
