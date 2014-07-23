@@ -30,4 +30,4 @@ script:
   - go get github.com/axw/gocov/gocov
   - go get github.com/mattn/goveralls
   - export PATH=$PATH:$HOME/gopath/bin/
-  - goveralls -coverprofile=bench.out dnUcDUidJs3n9UP0saMUWb6Hj0Z336AwR
+  - goveralls -coverprofile=bench.out 
