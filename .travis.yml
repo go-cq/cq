@@ -23,6 +23,8 @@ before_install:
   - echo "org.neo4j.server.transaction.timeout=1" >> neo4j-community-$NEO_VERSION/conf/neo4j-server.properties
   - neo4j-community-$NEO_VERSION/bin/neo4j start
 
+install:
+
 script:
   - cd types
   - go test -covermode=count -coverprofile=../typescov.out
