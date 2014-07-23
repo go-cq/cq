@@ -105,7 +105,7 @@ func main() {
 
 ## types subpackage
 
-database/sql out of the box doesn't implement many types to pass in as parameters or Scan() out of rows. Custom Cypher types are implemented in the `cq/types` subpackage (`import "gopkg.in/cq.v0/types"`). These custom types allow users of cq to `Scan()` types out of results, as well as pass types in as parameters.
+database/sql out of the box doesn't implement many types to pass in as parameters or Scan() out of rows. Custom Cypher types are implemented in the `cq/types` subpackage (`import "gopkg.in/cq.v1/types"`). These custom types allow users of cq to `Scan()` types out of results, as well as pass types in as parameters.
 
 | Go type			| Can be <br/>query parameter?	| cq wrapper, for Scan	| CypherType uint8 |
 |:------------------ |:------------------:|:--------------------- | --------------------- |
