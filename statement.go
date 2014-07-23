@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/wfreeman/cq/types"
+	"gopkg.in/cq.v1/types"
 )
 
 type rows struct {

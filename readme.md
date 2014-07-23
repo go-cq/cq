@@ -142,7 +142,7 @@ ok  	github.com/wfreeman/cq	79.973s
 ```
 
 ## thanks
-Thanks to issue reporters and [contributors](https://github.com/wfreeman/cq/graphs/contributors)!
+Thanks to issue reporters and [contributors](https://github.com/go-cq/cq/graphs/contributors)!
 
 ## license
 
