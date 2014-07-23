@@ -3,9 +3,9 @@ package types_test
 import (
 	"errors"
 
-	_ "github.com/wfreeman/cq"
-	"github.com/wfreeman/cq/types"
-	. "launchpad.net/gocheck"
+	. "gopkg.in/check.v1"
+	_ "gopkg.in/cq.v1"
+	"gopkg.in/cq.v1/types"
 )
 
 func (s *TypesSuite) TestQueryArrayIntParam(c *C) {

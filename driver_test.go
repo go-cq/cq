@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"testing"
-	. "launchpad.net/gocheck"
+	. "gopkg.in/check.v1"
 )
 
 // This file is meant to hold integration tests where cq must be imported

@@ -3,9 +3,8 @@ package cq
 import (
 	"database/sql/driver"
 	"flag"
-	. "launchpad.net/gocheck"
 	"log"
-	//"testing"
+	. "gopkg.in/check.v1"
 )
 
 type ConnSuite struct{}

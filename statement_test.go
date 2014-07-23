@@ -2,8 +2,8 @@ package cq
 
 import (
 	"database/sql/driver"
-	. "launchpad.net/gocheck"
 	"log"
+	. "gopkg.in/check.v1"
 )
 
 type StatementSuite struct{}

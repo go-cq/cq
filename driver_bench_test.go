@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"time"
-	. "launchpad.net/gocheck"
+	. "gopkg.in/check.v1"
 )
 
 type BenchmarkSuite struct{}

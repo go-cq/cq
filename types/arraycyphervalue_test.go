@@ -3,9 +3,9 @@ package types_test
 import (
 	"errors"
 
-	_ "github.com/wfreeman/cq"
-	"github.com/wfreeman/cq/types"
-	. "launchpad.net/gocheck"
+	_ "gokpg.in/cq.v1"
+	. "gopkg.in/check.v1"
+	"gopkg.in/cq.v1/types"
 )
 
 func (s *TypesSuite) TestQueryCypherValueArray(c *C) {
