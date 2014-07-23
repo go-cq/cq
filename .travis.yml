@@ -8,9 +8,14 @@ env:
 
 before_script:
   - go get gopkg.in/check.v1
-  - go get gopkg.in/cq.v1
+  - go get github.com/axw/gocov/gocov
+  - go get github.com/mattn/goveralls
+  - export PATH=$PATH:$HOME/gopath/bin/
   
 after_success:
+  - tail -n +2 typescov.out >> bench.out
+  - tail -n +2 cov.out >> bench.out
+  - goveralls -coverprofile=bench.out 
   
 before_install:
   - go get code.google.com/p/go.tools/cmd/cover
@@ -25,9 +30,3 @@ script:
   - cd ..
   - go test -covermode=count -coverprofile=cov.out
   - go test -gocheck.b -covermode=count -coverprofile=bench.out
-  - tail -n +2 typescov.out >> bench.out
-  - tail -n +2 cov.out >> bench.out
-  - go get github.com/axw/gocov/gocov
-  - go get github.com/mattn/goveralls
-  - export PATH=$PATH:$HOME/gopath/bin/
-  - goveralls -coverprofile=bench.out 
