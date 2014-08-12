@@ -24,6 +24,7 @@ before_install:
 
 install:
   - cd ../..
+  - mkdir gopkg.in
   - mv go-cq/cq gopkg.in/cq.v1
   - cd gopkg.in/cq.v1
 
