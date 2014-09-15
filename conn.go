@@ -22,7 +22,7 @@ func init() {
 }
 
 var (
-	cqVersion = "0.1.0"
+	cqVersion = "1.0.3"
 	tr        = &http.Transport{
 		DisableKeepAlives: true,
 	}
