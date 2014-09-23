@@ -71,7 +71,7 @@ func main() {
 }
 ```
 
-## Deployment on Heroku
+## deployment on Heroku w/ GrapheneDB
 
 There is a repo with a template app for Heroku [here](https://github.com/wfreeman/cq-example).
 Use this Heroku deploy button to push the template project on to a new app on your Heroku account.
