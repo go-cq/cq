@@ -71,6 +71,13 @@ func main() {
 }
 ```
 
+## Deployment on Heroku
+
+There is a repo with a template app for Heroku [here](https://github.com/wfreeman/cq-example).
+Use this Heroku deploy button to push the template project on to a new app on your Heroku account.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/wfreeman/cq-example)
+
 ## transactional API
 The transactional API using `db.Begin()` is optimized for sending many queries to the [transactional Cypher endpoint](http://docs.neo4j.org/chunked/milestone/rest-api-transactional.html), in that it will batch them up and send them in chunks by default. Currently only supports `stmt.Exec()` within a transaction, will work on supporting `stmt.Query()` next and queueing up results.
 
@@ -129,6 +136,7 @@ database/sql out of the box doesn't implement many types to pass in as parameter
 | `map[string]string`	| yes						| `MapStringString`			| `CypherMapStringString`			|
 | `map[string]types.CypherValue`| yes			| `MapStringCypherValue`	| `CypherMapStringCypherValue`				|
 
+
 ## transactional API benchmarks
 Able to get sustained times of 20k+ cypher statements per second, even with multiple nodes per create... on a 2011 vintage macbook.
 
@@ -141,6 +149,7 @@ BenchmarkTransactional1000SimpleCreate	 1000000	     27320 ns/op
 BenchmarkTransactional10000SimpleCreate	  500000	     28524 ns/op
 ok  	github.com/wfreeman/cq	79.973s
 ```
+
 
 ## thanks
 Thanks to issue reporters and [contributors](https://github.com/go-cq/cq/graphs/contributors)!
