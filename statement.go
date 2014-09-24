@@ -47,14 +47,14 @@ func (stmt *cypherStmt) Exec(args []driver.Value) (driver.Result, error) {
 	if stmt.c.transaction != nil {
 		err := stmt.c.transaction.query(stmt.query, args)
 		// TODO add counts and error support
-		return nil, err
+		return driver.RowsAffected(0), err
 	}
 	rows, err := stmt.Query(args)
 	if rows != nil {
 		defer rows.Close()
 	}
 	// TODO add counts and error support
-	return nil, err
+	return driver.RowsAffected(0), err
 }
 
 func (stmt *cypherStmt) NumInput() int {
