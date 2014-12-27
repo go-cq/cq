@@ -24,12 +24,10 @@ before_install:
   - neo4j-community-$NEO_VERSION/bin/neo4j start
 
 install:
-  - cd ../../..
-  - mkdir gopkg.in
-  - mv github.com/go-cq/cq gopkg.in/cq.v1
-  - cd gopkg.in/cq.v1
+  - go get gopkg.in/cq.v1
 
 script:
+  - cd ../../gopkg.in/cq.v1/
   - cd types
   - go test -covermode=count -coverprofile=../typescov.out
   - cd ..
