@@ -22,7 +22,7 @@ func init() {
 }
 
 var (
-	cqVersion = "1.0.4"
+	cqVersion = "2.0.0"
 	tr        = &http.Transport{
 		DisableKeepAlives: true,
 	}
@@ -50,7 +50,7 @@ type neo4jData struct {
 
 func setDefaultHeaders(req *http.Request) {
 	req.Header.Set("X-Stream", "true")
-	req.Header.Set("User-Agent", cqVersion)
+	req.Header.Set("User-Agent", "cq"+cqVersion)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
 }
