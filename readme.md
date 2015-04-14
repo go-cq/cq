@@ -81,9 +81,9 @@ func main() {
 
 | **Version** | **Tested** |
 |-------------|------------|
-| 1.9         |     ??     |
-| 2.0         |     ??     |
-| 2.1         |     ??     |
+| 1.9         |     No     |
+| 2.0         |     Yes    |
+| 2.1         |     Yes    |
 | 2.2         |     No     |
 
 ## Neo4j feature support
@@ -93,8 +93,8 @@ func main() {
 | Auth                 |  No            |
 | Remote Cypher        |  Yes           |
 | Transactions         |  Yes           |
-| High Availability    |  ??            |
-| Embedded JVM support |  ??            |
+| High Availability    |  No            |
+| Embedded JVM support |  No            |
 
 ## deployment on Heroku w/ GrapheneDB
 
