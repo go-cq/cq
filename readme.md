@@ -92,7 +92,7 @@ func main() {
 |----------------------|----------------|
 | Auth                 |  No            |
 | Remote Cypher        |  Yes           |
-| Transactions         |  Yes           |
+| Transactions         |  Partial (write only)           |
 | High Availability    |  No            |
 | Embedded JVM support |  No            |
 
