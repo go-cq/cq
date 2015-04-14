@@ -71,6 +71,24 @@ func main() {
 	}
 }
 ```
+## Neo4j version support
+
+| **Version** | **Tested** |
+|-------------|------------|
+| 1.9         |     ??     |
+| 2.0         |     ??     |
+| 2.1         |     ??     |
+| 2.2         |     No     |
+
+## Neo4j feature support
+
+| **Feature**          | **Supported?** |
+|----------------------|----------------|
+| Auth                 |  No            |
+| Remote Cypher        |  Yes           |
+| Transactions         |  Yes           |
+| High Availability    |  ??            |
+| Embedded JVM support |  ??            |
 
 ## deployment on Heroku w/ GrapheneDB
 
