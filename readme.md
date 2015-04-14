@@ -1,5 +1,5 @@
 # cq - cypher queries for database/sql
-A [golang](golang) database/sql implementation for [Cypher](cypher-intro)/[Neo4j](neo4j). I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
+A [golang][golang] database/sql implementation for [Cypher][cypher-intro]/[Neo4j][neo4j]. I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
 
 If you'd like to use the new [gopkg.in](http://godoc.org/gopkg.in/docs.v1) semantic versioning system:
 
