@@ -1,5 +1,5 @@
 # cq - cypher queries for database/sql
-A database/sql implementation for Cypher. I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
+A [golang](golang) database/sql implementation for [Cypher](cypher-intro)/[Neo4j](neo4j). I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
 
 If you'd like to use the new [gopkg.in](http://godoc.org/gopkg.in/docs.v1) semantic versioning system:
 
@@ -10,6 +10,7 @@ import "gopkg.in/cq.v1"
 [![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=master)](https://travis-ci.org/go-cq/cq)
 [![Coverage Status](https://img.shields.io/coveralls/go-cq/cq.svg)](https://coveralls.io/r/go-cq/cq?branch=master)
 [![Waffle](https://badge.waffle.io/go-cq/cq.png?label=ready)](https://waffle.io/go-cq/cq)
+[![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=go,cq)
 [![Gitter chat](https://badges.gitter.im/go-cq/cq.png)](https://gitter.im/go-cq/cq)
 
 Thanks to [Baron](http://twitter.com/xaprb), [Mike](http://twitter.com/mikearpaia), and [Jason](https://github.com/jmcvetta) for the ideas/motivation to start on this project. Cypher is close enough to SQL that it seems to fit pretty well in the idiomatic database/sql implementation.
@@ -158,3 +159,7 @@ Thanks to issue reporters and [contributors](https://github.com/go-cq/cq/graphs/
 
 MIT license. See license file.
 
+
+[golang]: https://golang.org/
+[neo4j]: http://neo4j.com/
+[cypher-intro]: http://neo4j.com/developer/cypher-query-language/ "Cypher Introduction"
