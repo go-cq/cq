@@ -1,5 +1,5 @@
 # cq - cypher queries for database/sql
-A database/sql implementation for Cypher. I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
+A [golang][golang] database/sql implementation for [Cypher][cypher-intro]/[Neo4j][neo4j]. I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
 
 If you'd like to use the new [gopkg.in](http://godoc.org/gopkg.in/docs.v1) semantic versioning system:
 
@@ -7,14 +7,21 @@ If you'd like to use the new [gopkg.in](http://godoc.org/gopkg.in/docs.v1) seman
 import "gopkg.in/cq.v1"
 ```
 
+### status
+
 [![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=master)](https://travis-ci.org/go-cq/cq)
 [![Coverage Status](https://img.shields.io/coveralls/go-cq/cq.svg)](https://coveralls.io/r/go-cq/cq?branch=master)
 [![Waffle](https://badge.waffle.io/go-cq/cq.png?label=ready)](https://waffle.io/go-cq/cq)
+
+### getting help
+[![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=go,cq)
 [![Gitter chat](https://badges.gitter.im/go-cq/cq.png)](https://gitter.im/go-cq/cq)
+
+### thanks
 
 Thanks to [Baron](http://twitter.com/xaprb), [Mike](http://twitter.com/mikearpaia), and [Jason](https://github.com/jmcvetta) for the ideas/motivation to start on this project. Cypher is close enough to SQL that it seems to fit pretty well in the idiomatic database/sql implementation.
 
-#### Other Go drivers for Neo4j that support Cypher
+### Other Go drivers for Neo4j that support Cypher
 * [Neoism](https://github.com/jmcvetta/neoism) (a careful/complete REST API implementation)
 * [GonormCypher](https://github.com/marpaia/GonormCypher) (a port of AnormCypher, to get up and running quickly)
 * [neo4j-go](https://github.com/jakewins/neo4j-go) (Jake's experimental Cypher driver)
@@ -70,6 +77,24 @@ func main() {
 	}
 }
 ```
+## Neo4j version support
+
+| **Version** | **Tested** |
+|-------------|------------|
+| 1.9         |     ??     |
+| 2.0         |     ??     |
+| 2.1         |     ??     |
+| 2.2         |     No     |
+
+## Neo4j feature support
+
+| **Feature**          | **Supported?** |
+|----------------------|----------------|
+| Auth                 |  No            |
+| Remote Cypher        |  Yes           |
+| Transactions         |  Yes           |
+| High Availability    |  ??            |
+| Embedded JVM support |  ??            |
 
 ## deployment on Heroku w/ GrapheneDB
 
@@ -158,3 +183,7 @@ Thanks to issue reporters and [contributors](https://github.com/go-cq/cq/graphs/
 
 MIT license. See license file.
 
+
+[golang]: https://golang.org/
+[neo4j]: http://neo4j.com/
+[cypher-intro]: http://neo4j.com/developer/cypher-query-language/ "Cypher Introduction"
