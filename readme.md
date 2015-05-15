@@ -1,30 +1,79 @@
-# cq - cypher queries for database/sql
-A database/sql implementation for Cypher. I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
+# cq - cypher queries for neo4j
+cq.v2 is the neo4j 2.3 focused development branch. It will support packstream
+and NDP (Neo4j Data Protocol) for the socket-based connections, as well as the old HTTP-based
+transactional Cypher API. Also, in addition to supporting the stdlib
+database/sql API, it will also support a slightly lower-level Neo4j-specific API (at least,
+for the NDP packages).
 
 If you'd like to use the new [gopkg.in](http://godoc.org/gopkg.in/docs.v1) semantic versioning system:
 
-```go
-import "gopkg.in/cq.v1"
-```
-
-[![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=master)](https://travis-ci.org/go-cq/cq)
-[![Coverage Status](https://img.shields.io/coveralls/go-cq/cq.svg)](https://coveralls.io/r/go-cq/cq?branch=master)
+[![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=master)](https://travis-ci.org/go-cq/cq?branch=v2)
+[![Coverage Status](https://img.shields.io/coveralls/go-cq/cq.svg)](https://coveralls.io/r/go-cq/cq?branch=v2)
 [![Waffle](https://badge.waffle.io/go-cq/cq.png?label=ready)](https://waffle.io/go-cq/cq)
 [![Gitter chat](https://badges.gitter.im/go-cq/cq.png)](https://gitter.im/go-cq/cq)
 
-Thanks to [Baron](http://twitter.com/xaprb), [Mike](http://twitter.com/mikearpaia), and [Jason](https://github.com/jmcvetta) for the ideas/motivation to start on this project. Cypher is close enough to SQL that it seems to fit pretty well in the idiomatic database/sql implementation.
+# NDP API
 
-#### Other Go drivers for Neo4j that support Cypher
-* [Neoism](https://github.com/jmcvetta/neoism) (a careful/complete REST API implementation)
-* [GonormCypher](https://github.com/marpaia/GonormCypher) (a port of AnormCypher, to get up and running quickly)
-* [neo4j-go](https://github.com/jakewins/neo4j-go) (Jake's experimental Cypher driver)
+```go
+import "gopkg.in/cq.v2/ndp/v1"
+```
 
-## usage
+The NDP API should be the way to go moving forward. It should be significantly
+faster than the HTTP API. It will probably only be in "beta" for Neo4j 2.3.
+
+## NDP API [minimum viable snippet](http://blog.fogus.me/2012/08/23/minimum-viable-snippet/)
+
+```go
+package main
+
+import (
+    "log"
+
+    "gopkg.in/cq.v2/ndp/v1" // import package ndp
+)
+
+type Person struct {
+    name string
+    age  int
+}
+
+func main() {
+    session, err := ndp.NewSession("localhost", 7687)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    results, err := session.Run("MATCH (a:Person)-[:FOLLOWS]->(p:Person) where a.name = {0} RETURN a.name, a.age", "wefreema")
+    if err != nil {
+        log.Fatal(err)
+    }
+    for _, result := range results {
+        person := Person{}
+        err = result.Scan(&person)
+        if err != nil {
+            log.Fatal(err)
+        }
+        fmt.Printf("%s is %d years old\n", person.name, person.age)
+    }
+}
+```
+
+# database/sql API
+
+The database/sql API can be used with NDP (neo4j 2.3+), or HTTP (neo4j 2.0+).
+
+```go
+import "gopkg.in/cq.v2/ndp/v1/stdlib"
+
+// or, if you're running neo4j <= 2.2.x (or don't want to use NDP) 
+import "gopkg.in/cq.v2/http/stdlib"
+```
+
 See the [excellent database/sql tutorial](http://go-database-sql.org/index.html) from [VividCortex](https://vividcortex.com/), as well as the [package documentation for database/sql](http://golang.org/pkg/database/sql/) for an introduction to the idiomatic go database access.
 
 You can (and should) use parameters, but the placeholders must be numbers in sequence, e.g. `{0}`, `{1}`, `{2}`, and then you must put them in order in the calls to `Query`/`Exec`. If you'd like to use named parameters, you can use the [sqlx](https://github.com/jmoiron/sqlx) library along with cq. Please let me know if any issues arise from using sqlx with cq--it is not thoroughly tested.
 
-## [minimum viable snippet](http://blog.fogus.me/2012/08/23/minimum-viable-snippet/)
+## database/SQL API [minimum viable snippet](http://blog.fogus.me/2012/08/23/minimum-viable-snippet/)
 
 ```go
 package main
@@ -33,20 +82,20 @@ import (
 	"database/sql"
 	"log"
 	
-	_ "gopkg.in/cq.v1"
+	_ "gopkg.in/cq.v2/ndp/v1/stdlib"
 )
 
 func main() {
-	db, err := sql.Open("neo4j-cypher", "http://localhost:7474")
+    db, err := sql.Open("cq", "localhost:7687;user;pass")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
 	stmt, err := db.Prepare(`
-		match (n:User)-[:FOLLOWS]->(m:User) 
+		match (n:Person)-[:FOLLOWS]->(m:Person) 
 		where n.screenName = {0} 
-		return m.screenName as friend
+		return m.name, m.age
 		limit 10
 	`)
 	if err != nil {
@@ -60,18 +109,20 @@ func main() {
 	}
 	defer rows.Close()
 
-	var friend string
+	var name string
+    var age int
 	for rows.Next() {
-		err := rows.Scan(&friend)
+		err := rows.Scan(&name, &age)
 		if err != nil {
 			log.Fatal(err)
 		}
+        person := Person{name, age}
 		log.Println(friend)
 	}
 }
 ```
 
-## deployment on Heroku w/ GrapheneDB
+## deployment on Heroku w/ GrapheneDB ***needs updating for v2
 
 There is a repo with a template app for Heroku [here](https://github.com/wfreeman/cq-example).
 Use this Heroku deploy button to push the template project on to a new app on your Heroku account.
