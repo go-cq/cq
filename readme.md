@@ -15,7 +15,7 @@ If you'd like to use the new [gopkg.in](http://godoc.org/gopkg.in/docs.v1) seman
 # NDP API
 
 ```go
-import "gopkg.in/cq.v2/ndp/v1"
+import "gopkg.in/cq.v2/ndp.v1"
 ```
 
 The NDP API should be the way to go moving forward. It should be significantly
@@ -63,7 +63,7 @@ func main() {
 The database/sql API can be used with NDP (neo4j 2.3+), or HTTP (neo4j 2.0+).
 
 ```go
-import "gopkg.in/cq.v2/ndp/v1/stdlib"
+import "gopkg.in/cq.v2/ndp.v1/stdlib"
 
 // or, if you're running neo4j <= 2.2.x (or don't want to use NDP) 
 import "gopkg.in/cq.v2/http/stdlib"
@@ -82,7 +82,7 @@ import (
 	"database/sql"
 	"log"
 	
-	_ "gopkg.in/cq.v2/ndp/v1/stdlib"
+	_ "gopkg.in/cq.v2/ndp.v1/stdlib"
 )
 
 func main() {
@@ -135,7 +135,7 @@ The transactional API using `db.Begin()` is optimized for sending many queries t
 #### transactional API example
 ```go
 func main() {
-	db, err := sql.Open("neo4j-cypher", "http://localhost:7474")
+	db, err := sql.Open("cq-http", "http://localhost:7474;user;pass")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -164,7 +164,7 @@ func main() {
 
 ## types subpackage
 
-database/sql out of the box doesn't implement many types to pass in as parameters or Scan() out of rows. Custom Cypher types are implemented in the `cq/types` subpackage (`import "gopkg.in/cq.v1/types"`). These custom types allow users of cq to `Scan()` types out of results, as well as pass types in as parameters.
+database/sql out of the box doesn't implement many types to pass in as parameters or Scan() out of rows. Custom Cypher types are implemented in the `cq/types` subpackage (`import "gopkg.in/cq.v2/http/types"`). These custom types allow users of cq to `Scan()` types out of results, as well as pass types in as parameters.
 
 | Go type			| Can be <br/>query parameter?	| cq wrapper, for Scan	| CypherType uint8 |
 |:------------------ |:------------------:|:--------------------- | --------------------- |
