@@ -29,7 +29,7 @@ package main
 import (
     "log"
 
-    "gopkg.in/cq.v2/ndp/v1" // import package ndp
+    "gopkg.in/cq.v2/ndp.v1" 
 )
 
 type Person struct {
