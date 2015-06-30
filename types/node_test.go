@@ -9,7 +9,7 @@ import (
 )
 
 func (s *TypesSuite) TestQueryNode(c *C) {
-	conn, err := sql.Open("neo4j-cypher", "http://localhost:7474/")
+	conn, err := sql.Open("neo4j-cypher", "http://neo4j:test@localhost:7474/")
 	c.Assert(err, IsNil)
 	stmt, err := conn.Prepare(`create (a:Test {foo:"bar", i:1}) return a`)
 	c.Assert(err, IsNil)
