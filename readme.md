@@ -84,15 +84,15 @@ func main() {
 | 1.9         |     No     |
 | 2.0         |     Yes    |
 | 2.1         |     Yes    |
-| 2.2         |     No     |
+| 2.2         |     Yes     |
 
 ## Neo4j feature support
 
 | **Feature**          | **Supported?** |
 |----------------------|----------------|
-| Auth                 |  No            |
+| Auth                 |  Yes           |
 | Remote Cypher        |  Yes           |
-| Transactions         |  Partial (write only)           |
+| Transactions         |  Partial (write only) |
 | High Availability    |  No            |
 | Embedded JVM support |  No            |
 
