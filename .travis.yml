@@ -17,7 +17,7 @@ after_success:
   - goveralls -coverprofile=bench.out 
   
 before_install:
-  - go get code.google.com/p/go.tools/cmd/cover
+  - go get golang.org/x/tools/cmd/cover
   - wget dist.neo4j.org/neo4j-community-$NEO_VERSION-unix.tar.gz
   - tar -xzf neo4j-community-$NEO_VERSION-unix.tar.gz
   - echo "org.neo4j.server.transaction.timeout=1" >> neo4j-community-$NEO_VERSION/conf/neo4j-server.properties
