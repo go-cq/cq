@@ -3,7 +3,7 @@ go:
   - 1.4
   
 env:
-  - NEO_VERSION="ndp-2.3.0-M01"
+  - NEO_VERSION="3.0.0-alpha.LATEST"
 
 before_script:
   - go get gopkg.in/check.v1
@@ -18,7 +18,7 @@ after_success:
   
 before_install:
   - go get golang.org/x/tools/cover
-  - graph.pub/dist/neo4j-community-$NEO_VERSION-unix.tar.gz
+  - wget http://alpha.neotechnology.com.s3-website-eu-west-1.amazonaws.com/neo4j-community-$NEO_VERSION-unix.tar.gz
   - tar -xzf neo4j-community-$NEO_VERSION-unix.tar.gz
   - neo4j-community-$NEO_VERSION/bin/neo4j start
 
