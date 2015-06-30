@@ -3,7 +3,7 @@ go:
   - 1.4
   
 env:
-  - NEO_VERSION="2.3.0-M01"
+  - NEO_VERSION="ndp-2.3.0-M01"
 
 before_script:
   - go get gopkg.in/check.v1
@@ -17,10 +17,9 @@ after_success:
   - goveralls -coverprofile=bench.out 
   
 before_install:
-  - go get code.google.com/p/go.tools/cmd/cover
-  - wget dist.neo4j.org/neo4j-community-$NEO_VERSION-unix.tar.gz
+  - go get golang.org/x/tools/cover
+  - graph.pub/dist/neo4j-community-$NEO_VERSION-unix.tar.gz
   - tar -xzf neo4j-community-$NEO_VERSION-unix.tar.gz
-  - echo "org.neo4j.server.transaction.timeout=1" >> neo4j-community-$NEO_VERSION/conf/neo4j-server.properties
   - neo4j-community-$NEO_VERSION/bin/neo4j start
 
 install:

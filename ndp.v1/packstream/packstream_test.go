@@ -116,3 +116,23 @@ func (s *PackstreamSuite) TestDecodeInt(c *C) {
 		c.Assert(v, Equals, test.i)
 	}
 }
+
+type Person struct {
+	Name   string
+	Age    int8
+	Weight int16
+}
+
+/*
+func (s *PackstreamSuite) TestEncodeStruct(c *C) {
+	buf := &bytes.Buffer{}
+	encoder, err := NewEncoder(buf)
+	if err != nil {
+		c.Fatal(err)
+	}
+
+	person := Person{"wes", 12, 1234}
+	err = encoder.Encode(person)
+	c.Assert(err, IsNil)
+}
+*/

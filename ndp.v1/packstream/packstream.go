@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"math"
+	"reflect"
 )
 
 const (
@@ -141,7 +142,7 @@ func (enc Encoder) Encode(v interface{}) error {
 	case int:
 		return enc.encodeInt64(int64(v.(int)))
 	}
-	return errors.New("unsupported type")
+	return errors.New(fmt.Sprintf("unsupported type: %v", reflect.TypeOf(v)))
 }
 
 func (enc Encoder) encodeBool(b bool) error {
