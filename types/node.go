@@ -62,7 +62,17 @@ func (n *Node) Labels(baseURL string) ([]string, error) {
 	}
 	labelURL.Scheme = base.Scheme
 	labelURL.User = base.User
-	resp, err := http.Get(n.LabelURI)
+	req, err := http.NewRequest("GET", n.LabelURI, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	fmt.Println(labelURL.User)
+	pass, _ := labelURL.User.Password()
+	user := labelURL.User.Username()
+	req.SetBasicAuth(user, pass)
+	client := &http.Client{}
+	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
