@@ -9,7 +9,7 @@ import "gopkg.in/cq.v1"
 
 ### status
 
-[![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=master)](https://travis-ci.org/go-cq/cq)
+[![Build Status](https://travis-ci.org/go-cq/cq.svg?branch=v1)](https://travis-ci.org/go-cq/cq)
 [![Coverage Status](https://img.shields.io/coveralls/go-cq/cq.svg)](https://coveralls.io/r/go-cq/cq?branch=master)
 [![Waffle](https://badge.waffle.io/go-cq/cq.png?label=ready)](https://waffle.io/go-cq/cq)
 
