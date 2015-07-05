@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"database/sql/driver"
 	"encoding/json"
+	"errors"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -118,6 +119,9 @@ func getNeoData(url string) (*neo4jData, error) {
 	res, err := http.Get(url)
 	if err != nil {
 		return nil, err
+	}
+	if res.StatusCode != 200 {
+		return nil, errors.New(res.Status)
 	}
 
 	neoData := neo4jData{}

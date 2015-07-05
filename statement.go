@@ -86,6 +86,7 @@ func (stmt *cypherStmt) Query(args []driver.Value) (driver.Rows, error) {
 		return nil, err
 	}
 	defer res.Body.Close()
+
 	cyphRes := cypherResult{}
 	err = json.NewDecoder(res.Body).Decode(&cyphRes)
 	io.Copy(ioutil.Discard, res.Body)
