@@ -74,6 +74,16 @@ func (s *TypesSuite) TestQueryCypherValueString(c *C) {
 	c.Assert(test.Val, Equals, "asdf")
 }
 
+func (s *TypesSuite) TestQueryCypherValueStringEscapeChars(c *C) {
+	rows := prepareAndQuery(`return '\\\"\''`)
+	rows.Next()
+	var test types.CypherValue
+	err := rows.Scan(&test)
+	c.Assert(err, IsNil)
+	c.Assert(test.Type, Equals, types.CypherString)
+	c.Assert(test.Val, Equals, `\"'`)
+}
+
 func (s *TypesSuite) TestQueryCypherValueInt64(c *C) {
 	rows := prepareAndQuery("return 9223372000000000000")
 	rows.Next()
