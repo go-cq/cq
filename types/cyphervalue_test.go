@@ -75,13 +75,13 @@ func (s *TypesSuite) TestQueryCypherValueString(c *C) {
 }
 
 func (s *TypesSuite) TestQueryCypherValueStringEscapeChars(c *C) {
-	rows := prepareAndQuery(`return '\\\"\''`)
+	rows := prepareAndQuery(`return '\\\"\'\r\n\t\f\b\u672C'`)
 	rows.Next()
 	var test types.CypherValue
 	err := rows.Scan(&test)
 	c.Assert(err, IsNil)
 	c.Assert(test.Type, Equals, types.CypherString)
-	c.Assert(test.Val, Equals, `\"'`)
+	c.Assert(test.Val, Equals, "\\\"'\r\n\t\f\b\u672C")
 }
 
 func (s *TypesSuite) TestQueryCypherValueInt64(c *C) {
