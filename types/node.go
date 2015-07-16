@@ -32,7 +32,20 @@ func (n *Node) Scan(value interface{}) error {
 		if ok != true {
 			break
 		}
-		n.Properties = inner.Val.(map[string]CypherValue)
+		switch inner.Val.(type) {
+		case map[string]string:
+			ss := inner.Val.(map[string]string)
+			sc := make(map[string]CypherValue, len(ss))
+			for k, v := range ss {
+				sc[k] = CypherValue{
+					Type: CypherString,
+					Val: v,
+				}
+			}
+			n.Properties = sc
+		case map[string]CypherValue:
+			n.Properties = inner.Val.(map[string]CypherValue)
+		}
 		inner, ok = cv["self"]
 		if ok != true {
 			break
