@@ -4,6 +4,7 @@ import (
 	"database/sql/driver"
 	"flag"
 	"log"
+
 	. "gopkg.in/check.v1"
 )
 
@@ -11,7 +12,7 @@ type ConnSuite struct{}
 
 var (
 	_       = Suite(&ConnSuite{})
-	testURL = flag.String("testdb", "http://localhost:7474/", "the base url for the test db")
+	testURL = flag.String("testdb", "http://neo4j:test@localhost:7474/", "the base url for the test db")
 )
 
 //func Test(t *testing.T) {

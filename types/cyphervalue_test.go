@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"testing"
+
 	. "gopkg.in/check.v1"
 	_ "gopkg.in/cq.v1"
 	"gopkg.in/cq.v1/types"
@@ -18,7 +19,7 @@ func Test(t *testing.T) {
 }
 
 func testConn() *sql.DB {
-	db, err := sql.Open("neo4j-cypher", "http://localhost:7474/")
+	db, err := sql.Open("neo4j-cypher", "http://neo4j:test@localhost:7474/")
 	if err != nil {
 		log.Fatal(err)
 	}
