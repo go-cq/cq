@@ -82,10 +82,11 @@ func (stmt *cypherStmt) Query(args []driver.Value) (driver.Rows, error) {
 	}
 	setDefaultHeaders(req)
 	res, err := client.Do(req)
-	defer res.Body.Close()
 	if err != nil {
 		return nil, err
 	}
+	defer res.Body.Close()
+
 	cyphRes := cypherResult{}
 	err = json.NewDecoder(res.Body).Decode(&cyphRes)
 	io.Copy(ioutil.Discard, res.Body)
