@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"reflect"
 	"strconv"
-	"strings"
 )
 
 type CypherType uint8
@@ -219,7 +218,10 @@ func (c *CypherValue) UnmarshalJSON(b []byte) error {
 	if len(b) > 0 {
 		switch b[0] {
 		case byte('"'):
-			c.Val = strings.Trim(str, "\"")
+			c.Val, err = strconv.Unquote(str)
+			if err != nil {
+				return err
+			}
 			c.Type = CypherString
 			return nil
 		case byte('{'):
