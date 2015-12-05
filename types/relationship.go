@@ -25,7 +25,20 @@ func (r *Relationship) Scan(value interface{}) error {
 		if ok != true {
 			break
 		}
-		r.Properties = inner.Val.(map[string]CypherValue)
+
+		properties, ok := inner.Val.(map[string]CypherValue)
+
+		if ok {
+			r.Properties = properties
+		} else {
+			r.Properties = map[string]CypherValue{}
+
+			properties := inner.Val.(map[string]string)
+
+			for k, v := range properties {
+				r.Properties[k] = CypherValue{CypherString, v}
+			}
+		}
 		inner, ok = cv["self"]
 		if ok != true {
 			break
