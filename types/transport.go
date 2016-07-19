@@ -1,14 +1,14 @@
 package types
 
 import (
-  "net/http"
+	"net/http"
 )
 
 var (
-  transport http.RoundTripper = &http.Transport{}
-  client = &http.Client{
-    Transport: transport,
-  }
+	transport http.RoundTripper = &http.Transport{}
+	client                      = &http.Client{
+		Transport: transport,
+	}
 )
 
 func SetTransport(rt http.RoundTripper) {
