@@ -1,7 +1,7 @@
 package cq
 
 import (
-	"github.com/origininvesting/cq/types"
+	"gopkg.in/cq.v1/types"
 	"net/http"
 )
 
