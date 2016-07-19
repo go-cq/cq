@@ -24,10 +24,6 @@ func init() {
 
 var (
 	cqVersion = "1.0.4"
-	tr        = &http.Transport{
-		DisableKeepAlives: true,
-	}
-	client = &http.Client{}
 )
 
 type conn struct {
@@ -100,7 +96,7 @@ func Open(baseURL string) (driver.Conn, error) {
 }
 
 func getNeoBase(url string) (*neo4jBase, error) {
-	res, err := http.Get(url)
+	res, err := client.Get(url)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +112,7 @@ func getNeoBase(url string) (*neo4jBase, error) {
 }
 
 func getNeoData(url string) (*neo4jData, error) {
-	res, err := http.Get(url)
+	res, err := client.Get(url)
 	if err != nil {
 		return nil, err
 	}

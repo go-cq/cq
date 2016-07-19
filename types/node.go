@@ -83,7 +83,6 @@ func (n *Node) Labels(baseURL string) ([]string, error) {
 	pass, _ := labelURL.User.Password()
 	user := labelURL.User.Username()
 	req.SetBasicAuth(user, pass)
-	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
