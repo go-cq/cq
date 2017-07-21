@@ -2,14 +2,16 @@ package types_test
 
 import (
 	"errors"
+
+	_ "github.com/Unified/golang-lib/lib/neo/drivers/cq"
 	. "gopkg.in/check.v1"
-	_ "gopkg.in/cq.v1"
-	"gopkg.in/cq.v1/types"
+
+	"github.com/Unified/golang-lib/lib/neo/drivers/cq/types"
 )
 
 func (s *TypesSuite) TestQueryArrayStringParam(c *C) {
 	stmt := prepareTest("with {0} as test return test")
-	rows, err := stmt.Query(types.ArrayString{[]string{"1", "2", "3"}})
+	rows, err := stmt.Query(types.ArrayString{Val: []string{"1", "2", "3"}})
 	c.Assert(err, IsNil)
 
 	rows.Next()

@@ -2,8 +2,8 @@ package cq
 
 import (
 	"database/sql/driver"
-	"log"
 	. "gopkg.in/check.v1"
+	"log"
 )
 
 type StatementSuite struct{}

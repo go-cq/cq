@@ -3,16 +3,17 @@ package types_test
 import (
 	"errors"
 
+	_ "github.com/Unified/golang-lib/lib/neo/drivers/cq"
 	. "gopkg.in/check.v1"
-	_ "gopkg.in/cq.v1"
-	"gopkg.in/cq.v1/types"
+
+	"github.com/Unified/golang-lib/lib/neo/drivers/cq/types"
 )
 
 func (s *TypesSuite) TestQueryMapStringCypherValueParam(c *C) {
 	stmt := prepareTest("with {0} as test return test")
 	rows, err := stmt.Query(
 		types.MapStringCypherValue{
-			map[string]types.CypherValue{
+			Val: map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})
@@ -24,7 +25,7 @@ func (s *TypesSuite) TestQueryMapStringCypherValueParam(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test, DeepEquals,
 		types.MapStringCypherValue{
-			map[string]types.CypherValue{
+			Val: map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})
@@ -44,7 +45,7 @@ func (s *TypesSuite) TestQueryStringCypherValueMapParam(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test, DeepEquals,
 		types.MapStringCypherValue{
-			map[string]types.CypherValue{
+			Val: map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})
@@ -58,7 +59,7 @@ func (s *TypesSuite) TestQueryMapStringCypherValue(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test, DeepEquals,
 		types.MapStringCypherValue{
-			map[string]types.CypherValue{
+			Val: map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})

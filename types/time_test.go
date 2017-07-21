@@ -3,9 +3,10 @@ package types_test
 import (
 	"time"
 
+	_ "github.com/Unified/golang-lib/lib/neo/drivers/cq"
 	. "gopkg.in/check.v1"
-	_ "gopkg.in/cq.v1"
-	"gopkg.in/cq.v1/types"
+
+	"github.com/Unified/golang-lib/lib/neo/drivers/cq/types"
 )
 
 func (s *TypesSuite) TestScanTime(c *C) {

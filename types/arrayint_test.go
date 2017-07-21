@@ -3,14 +3,15 @@ package types_test
 import (
 	"errors"
 
+	_ "github.com/Unified/golang-lib/lib/neo/drivers/cq"
 	. "gopkg.in/check.v1"
-	_ "gopkg.in/cq.v1"
-	"gopkg.in/cq.v1/types"
+
+	"github.com/Unified/golang-lib/lib/neo/drivers/cq/types"
 )
 
 func (s *TypesSuite) TestQueryArrayIntParam(c *C) {
 	stmt := prepareTest("with {0} as test return test")
-	rows, err := stmt.Query(types.ArrayInt{[]int{1, 2, 3}})
+	rows, err := stmt.Query(types.ArrayInt{Val: []int{1, 2, 3}})
 	c.Assert(err, IsNil)
 
 	rows.Next()
@@ -73,7 +74,7 @@ func (s *TypesSuite) TestQueryIntArrayProperty(c *C) {
 
 func (s *TypesSuite) TestQueryArrayInt64Param(c *C) {
 	stmt := prepareTest("with {0} as test return test")
-	rows, err := stmt.Query(types.ArrayInt64{[]int64{12345678910, 234567891011, 3456789101112}})
+	rows, err := stmt.Query(types.ArrayInt64{Val: []int64{12345678910, 234567891011, 3456789101112}})
 	c.Assert(err, IsNil)
 
 	rows.Next()

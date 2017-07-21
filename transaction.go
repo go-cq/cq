@@ -125,7 +125,7 @@ func (tx *cypherTransaction) exec() error {
 
 func (tx *cypherTransaction) Commit() error {
 	if tx.Statements == nil {
-		return nil	
+		return nil
 	}
 	var buf bytes.Buffer
 	err := json.NewEncoder(&buf).Encode(tx)
@@ -134,22 +134,27 @@ func (tx *cypherTransaction) Commit() error {
 	}
 	req, err := http.NewRequest("POST", tx.commitURL, &buf)
 	if err != nil {
+		Log.Printf("An error occurred creating request to commit transation: %s", err.Error())
 		return err
 	}
 	setDefaultHeaders(req)
 	res, err := client.Do(req)
-	defer res.Body.Close()
 	if err != nil {
+		Log.Printf("An error occurred making request to commit transation: %s", err.Error())
 		return err
 	}
+	defer res.Body.Close()
+
 	commit := commitResponse{}
 	json.NewDecoder(res.Body).Decode(&commit)
 	io.Copy(ioutil.Discard, res.Body)
-	res.Body.Close()
 	if err != nil {
+		Log.Printf("An error occurred reading response to commit transation: %s", err.Error())
 		return err
 	}
+
 	if len(commit.Errors) > 0 {
+		Log.Printf("An error occurred committing transation: %#v", commit.Errors)
 		return errors.New("commit errors: " + fmt.Sprintf("%q", commit))
 	}
 	tx.c.transaction = nil
@@ -162,21 +167,25 @@ func (tx *cypherTransaction) Commit() error {
 func (tx *cypherTransaction) Rollback() error {
 	req, err := http.NewRequest("DELETE", tx.transactionURL, nil)
 	if err != nil {
+		Log.Printf("An error occurred creating request to rollback transation: %s", err.Error())
 		return err
 	}
 	setDefaultHeaders(req)
 	res, err := client.Do(req)
 	if err != nil {
+		Log.Printf("An error occurred making request to rollback transation: %s", err.Error())
 		return err
 	}
+	defer res.Body.Close()
 	commit := commitResponse{}
 	json.NewDecoder(res.Body).Decode(&commit)
 	io.Copy(ioutil.Discard, res.Body)
-	res.Body.Close()
 	if err != nil {
+		Log.Printf("An error occurred reading response to rollback transation: %s", err.Error())
 		return err
 	}
 	if len(commit.Errors) > 0 {
+		Log.Printf("An error occurred rolling back transation: %#v", commit.Errors)
 		return errors.New("rollback errors: " + fmt.Sprintf("%q", commit))
 	}
 	tx.c.transaction = nil
@@ -192,18 +201,29 @@ func getTransactionResponse(url string, cypherTransReq cypherTransaction) (*tran
 	json.NewEncoder(&buf).Encode(cypherTransReq)
 	req, err := http.NewRequest("POST", url, &buf)
 	if err != nil {
+		Log.Printf("An error occurred creating request to get transation: %s", err.Error())
 		return nil, err
 	}
 	setDefaultHeaders(req)
+
 	res, err := client.Do(req)
 	if err != nil {
+		Log.Printf("An error occurred making request to get transation: %s", err.Error())
 		return nil, err
 	}
+	defer res.Body.Close()
+
 	transResponse := transactionResponse{}
-	json.NewDecoder(res.Body).Decode(&transResponse)
+	err = json.NewDecoder(res.Body).Decode(&transResponse)
+	if err != nil {
+		Log.Printf("An error occurred reading response to commit transation: %s", err.Error())
+		return nil, err
+	}
+
 	io.Copy(ioutil.Discard, res.Body)
-	res.Body.Close()
+
 	transResponse.location = res.Header.Get("Location")
+
 	return &transResponse, nil
 }
 

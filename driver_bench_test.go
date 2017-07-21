@@ -2,9 +2,9 @@ package cq
 
 import (
 	"fmt"
+	. "gopkg.in/check.v1"
 	"log"
 	"time"
-	. "gopkg.in/check.v1"
 )
 
 type BenchmarkSuite struct{}

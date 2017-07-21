@@ -16,9 +16,9 @@ func (s *TypesSuite) TestQueryCypherValueArray(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test.Val, DeepEquals,
 		[]types.CypherValue{
-			types.CypherValue{types.CypherFloat64, 1.1},
-			types.CypherValue{types.CypherFloat64, 2.1},
-			types.CypherValue{types.CypherString, "asdf"}})
+			types.CypherValue{Type: types.CypherFloat64, Val: 1.1},
+			types.CypherValue{Type: types.CypherFloat64, Val: 2.1},
+			types.CypherValue{Type: types.CypherString, Val: "asdf"}})
 }
 
 func (s *TypesSuite) TestQueryNullCypherValueArray(c *C) {
