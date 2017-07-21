@@ -11,7 +11,6 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"os"
 	"sync"
 )
 
@@ -43,7 +42,8 @@ func init() {
 	if !driverRegistered() {
 		sql.Register(DriverName, &cypherDriver{})
 	}
-	Log = log.New(os.Stderr, "CQ: ", log.LstdFlags)
+	// Log = log.New(os.Stderr, "CQ: ", log.LstdFlags)
+	Log = log.New(ioutil.Discard, "CQ: ", log.LstdFlags)
 }
 
 var (

@@ -3,8 +3,8 @@ package types_test
 import (
 	"errors"
 
-	_ "github.com/Unified/golang-lib/lib/neo/drivers/cq"
-	"github.com/Unified/golang-lib/lib/neo/drivers/cq/types"
+	_ "github.com/johnnadratowski/cq"
+	"github.com/johnnadratowski/cq/types"
 	. "gopkg.in/check.v1"
 )
 

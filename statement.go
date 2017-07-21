@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Unified/golang-lib/lib/neo/drivers/cq/types"
+	"github.com/johnnadratowski/cq/types"
 )
 
 type rows struct {

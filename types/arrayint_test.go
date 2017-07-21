@@ -3,10 +3,10 @@ package types_test
 import (
 	"errors"
 
-	_ "github.com/Unified/golang-lib/lib/neo/drivers/cq"
+	_ "github.com/johnnadratowski/cq"
 	. "gopkg.in/check.v1"
 
-	"github.com/Unified/golang-lib/lib/neo/drivers/cq/types"
+	"github.com/johnnadratowski/cq/types"
 )
 
 func (s *TypesSuite) TestQueryArrayIntParam(c *C) {
