@@ -4,16 +4,15 @@ import (
 	"errors"
 
 	_ "github.com/johnnadratowski/cq"
-	. "gopkg.in/check.v1"
-
 	"github.com/johnnadratowski/cq/types"
+	. "gopkg.in/check.v1"
 )
 
 func (s *TypesSuite) TestQueryMapStringCypherValueParam(c *C) {
 	stmt := prepareTest("with {0} as test return test")
 	rows, err := stmt.Query(
 		types.MapStringCypherValue{
-			Val: map[string]types.CypherValue{
+			map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})
@@ -25,7 +24,7 @@ func (s *TypesSuite) TestQueryMapStringCypherValueParam(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test, DeepEquals,
 		types.MapStringCypherValue{
-			Val: map[string]types.CypherValue{
+			map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})
@@ -45,7 +44,7 @@ func (s *TypesSuite) TestQueryStringCypherValueMapParam(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test, DeepEquals,
 		types.MapStringCypherValue{
-			Val: map[string]types.CypherValue{
+			map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})
@@ -59,7 +58,7 @@ func (s *TypesSuite) TestQueryMapStringCypherValue(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test, DeepEquals,
 		types.MapStringCypherValue{
-			Val: map[string]types.CypherValue{
+			map[string]types.CypherValue{
 				"key1": types.CypherValue{Val: "1", Type: types.CypherString},
 				"key2": types.CypherValue{Val: 2, Type: types.CypherInt},
 			}})

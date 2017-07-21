@@ -3,9 +3,9 @@ package types_test
 import (
 	"errors"
 
+	_ "github.com/johnnadratowski/cq"
+	"github.com/johnnadratowski/cq/types"
 	. "gopkg.in/check.v1"
-	_ "gopkg.in/cq.v1"
-	"gopkg.in/cq.v1/types"
 )
 
 func (s *TypesSuite) TestQueryCypherValueArray(c *C) {
@@ -16,9 +16,9 @@ func (s *TypesSuite) TestQueryCypherValueArray(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(test.Val, DeepEquals,
 		[]types.CypherValue{
-			types.CypherValue{Type: types.CypherFloat64, Val: 1.1},
-			types.CypherValue{Type: types.CypherFloat64, Val: 2.1},
-			types.CypherValue{Type: types.CypherString, Val: "asdf"}})
+			types.CypherValue{types.CypherFloat64, 1.1},
+			types.CypherValue{types.CypherFloat64, 2.1},
+			types.CypherValue{types.CypherString, "asdf"}})
 }
 
 func (s *TypesSuite) TestQueryNullCypherValueArray(c *C) {

@@ -4,9 +4,8 @@ import (
 	"time"
 
 	_ "github.com/johnnadratowski/cq"
-	. "gopkg.in/check.v1"
-
 	"github.com/johnnadratowski/cq/types"
+	. "gopkg.in/check.v1"
 )
 
 func (s *TypesSuite) TestScanTime(c *C) {

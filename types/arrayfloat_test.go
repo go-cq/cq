@@ -10,7 +10,7 @@ import (
 
 func (s *TypesSuite) TestQueryArrayFloat64Param(c *C) {
 	stmt := prepareTest("with {0} as test return test")
-	rows, err := stmt.Query(types.ArrayFloat64{Val: []float64{1.1, 2.1, 3.1}})
+	rows, err := stmt.Query(types.ArrayFloat64{[]float64{1.1, 2.1, 3.1}})
 	c.Assert(err, IsNil)
 
 	rows.Next()
