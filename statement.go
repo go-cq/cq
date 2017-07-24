@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/johnnadratowski/cq/types"
+	"github.com/Unified/cq/types"
 )
 
 type rows struct {

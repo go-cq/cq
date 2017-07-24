@@ -3,8 +3,8 @@ package types_test
 import (
 	"errors"
 
-	_ "github.com/johnnadratowski/cq"
-	"github.com/johnnadratowski/cq/types"
+	_ "github.com/Unified/cq"
+	"github.com/Unified/cq/types"
 	. "gopkg.in/check.v1"
 )
 
