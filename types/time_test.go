@@ -3,9 +3,9 @@ package types_test
 import (
 	"time"
 
+	_ "github.com/Unified/cq"
+	"github.com/Unified/cq/types"
 	. "gopkg.in/check.v1"
-	_ "gopkg.in/cq.v1"
-	"gopkg.in/cq.v1/types"
 )
 
 func (s *TypesSuite) TestScanTime(c *C) {

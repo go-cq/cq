@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"gopkg.in/cq.v1/types"
+	"github.com/Unified/cq/types"
 )
 
 type rows struct {
@@ -83,6 +83,7 @@ func (stmt *cypherStmt) Query(args []driver.Value) (driver.Rows, error) {
 	setDefaultHeaders(req)
 	res, err := client.Do(req)
 	if err != nil {
+		Log.Printf("An error occurred running Neo4j query: %s:\n\nQUERY:\n\n%s\n\nPARAMS: %#v\n\n", err.Error(), *stmt.query, args)
 		return nil, err
 	}
 	defer res.Body.Close()
@@ -92,9 +93,11 @@ func (stmt *cypherStmt) Query(args []driver.Value) (driver.Rows, error) {
 	io.Copy(ioutil.Discard, res.Body)
 	res.Body.Close()
 	if err != nil {
+		Log.Printf("An error occurred reading Neo4j response: %s:\n\nQUERY:\n\n%s\n\nPARAMS: %#v\n\n", err.Error(), *stmt.query, args)
 		return nil, err
 	}
 	if cyphRes.ErrorMessage != "" {
+		Log.Printf("Recieved a cypher error: %s:\n\nQUERY:\n\n%s\n\nPARAMS: %#v\n\n", cyphRes.ErrorMessage, *stmt.query, args)
 		return nil, errors.New("Cypher error: " + cyphRes.ErrorMessage)
 	}
 	return &rows{stmt, &cyphRes, 0}, nil
