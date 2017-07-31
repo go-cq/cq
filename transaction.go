@@ -6,8 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -146,8 +144,7 @@ func (tx *cypherTransaction) Commit() error {
 	defer res.Body.Close()
 
 	commit := commitResponse{}
-	json.NewDecoder(res.Body).Decode(&commit)
-	io.Copy(ioutil.Discard, res.Body)
+	err = json.NewDecoder(res.Body).Decode(&commit)
 	if err != nil {
 		Log.Printf("An error occurred reading response to commit transation: %s", err.Error())
 		return err
@@ -178,8 +175,7 @@ func (tx *cypherTransaction) Rollback() error {
 	}
 	defer res.Body.Close()
 	commit := commitResponse{}
-	json.NewDecoder(res.Body).Decode(&commit)
-	io.Copy(ioutil.Discard, res.Body)
+	err = json.NewDecoder(res.Body).Decode(&commit)
 	if err != nil {
 		Log.Printf("An error occurred reading response to rollback transation: %s", err.Error())
 		return err
@@ -219,8 +215,6 @@ func getTransactionResponse(url string, cypherTransReq cypherTransaction) (*tran
 		Log.Printf("An error occurred reading response to commit transation: %s", err.Error())
 		return nil, err
 	}
-
-	io.Copy(ioutil.Discard, res.Body)
 
 	transResponse.location = res.Header.Get("Location")
 

@@ -6,11 +6,10 @@ import (
 	"database/sql/driver"
 	"encoding/json"
 	"errors"
-	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"sync"
 )
 
@@ -21,9 +20,15 @@ var dataSync sync.RWMutex
 var baseCache = map[string]*neo4jBase{}
 var dataCache = map[string]*neo4jData{}
 
-var Log *log.Logger
-
-var DriverName = "neo4j-cypher"
+var (
+	Version = "1.0.5"
+	tr      = &http.Transport{
+		DisableKeepAlives: true,
+	}
+	client     = &http.Client{}
+	Log        *log.Logger
+	DriverName = "neo4j-cypher"
+)
 
 func (d *cypherDriver) Open(name string) (driver.Conn, error) {
 	return Open(name)
@@ -42,17 +47,9 @@ func init() {
 	if !driverRegistered() {
 		sql.Register(DriverName, &cypherDriver{})
 	}
-	// Log = log.New(os.Stderr, "CQ: ", log.LstdFlags)
-	Log = log.New(ioutil.Discard, "CQ: ", log.LstdFlags)
+	Log = log.New(os.Stderr, "CQ: ", log.LstdFlags)
+	// Log = log.New(ioutil.Discard, "CQ: ", log.LstdFlags)
 }
-
-var (
-	cqVersion = "1.0.5"
-	tr        = &http.Transport{
-		DisableKeepAlives: true,
-	}
-	client = &http.Client{}
-)
 
 type conn struct {
 	baseURL        string
@@ -75,7 +72,7 @@ type neo4jData struct {
 
 func setDefaultHeaders(req *http.Request) {
 	req.Header.Set("X-Stream", "true")
-	req.Header.Set("User-Agent", cqVersion)
+	req.Header.Set("User-Agent", Version)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
 }
@@ -140,7 +137,6 @@ func getNeoBase(url string) (*neo4jBase, error) {
 
 	neoBase := neo4jBase{}
 	err = json.NewDecoder(res.Body).Decode(&neoBase)
-	io.Copy(ioutil.Discard, res.Body)
 	if err != nil {
 		Log.Printf("An error occurred reading Neo4j Base %s: %s", url, err.Error())
 		return nil, err
@@ -174,7 +170,6 @@ func getNeoData(url string) (*neo4jData, error) {
 
 	neoData := neo4jData{}
 	err = json.NewDecoder(res.Body).Decode(&neoData)
-	io.Copy(ioutil.Discard, res.Body)
 	if err != nil {
 		Log.Printf("An error occurred reading Neo4j Data %s: %s", url, err.Error())
 		return nil, err

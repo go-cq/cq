@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 
@@ -90,8 +89,6 @@ func (stmt *cypherStmt) Query(args []driver.Value) (driver.Rows, error) {
 
 	cyphRes := cypherResult{}
 	err = json.NewDecoder(res.Body).Decode(&cyphRes)
-	io.Copy(ioutil.Discard, res.Body)
-	res.Body.Close()
 	if err != nil {
 		Log.Printf("An error occurred reading Neo4j response: %s:\n\nQUERY:\n\n%s\n\nPARAMS: %#v\n\n", err.Error(), *stmt.query, args)
 		return nil, err
