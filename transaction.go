@@ -51,7 +51,8 @@ func (c *conn) Begin() (driver.Tx, error) {
 	if c.transactionURL == "" {
 		return nil, ErrTransactionsNotSupported
 	}
-	transResponse, err := getTransactionResponse(c.transactionURL, cypherTransaction{})
+	transResponse, err := getTransactionResponse(c.transactionURL,
+		cypherTransaction{Statements: make([]cypherTransactionStatement, 0)})
 	if err != nil {
 		return nil, err
 	}
@@ -125,7 +126,7 @@ func (tx *cypherTransaction) exec() error {
 
 func (tx *cypherTransaction) Commit() error {
 	if tx.Statements == nil {
-		return nil	
+		return nil
 	}
 	var buf bytes.Buffer
 	err := json.NewEncoder(&buf).Encode(tx)
