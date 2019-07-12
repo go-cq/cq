@@ -47,7 +47,7 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("neo4j-cypher", "http://localhost:7474")
+	db, err := sql.Open("neo4j-cypher", "http://neo4j:pass@localhost:7474")
 	if err != nil {
 		log.Fatal(err)
 	}
