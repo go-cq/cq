@@ -1,3 +1,6 @@
+# note
+As Neo4j has an official go driver, and native go bolt drivers exist, I don't plan to maintain cq (not that it has seen much effort in recent times, but just making it official). I will accept constructive PRs, if any are submitted. -Eve
+
 # cq - cypher queries for database/sql
 A [golang][golang] database/sql implementation for [Cypher][cypher-intro]/[Neo4j][neo4j]. I've released v1. I plan to change the API in the near future, but v1 will remain supported for some time.
 
