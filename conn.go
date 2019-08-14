@@ -2,6 +2,7 @@
 package cq
 
 import (
+	"bytes"
 	"database/sql"
 	"database/sql/driver"
 	"encoding/json"
@@ -164,8 +165,10 @@ func getNeoData(url string) (*neo4jData, error) {
 	defer res.Body.Close()
 
 	if res.StatusCode != 200 {
-		Log.Printf("A non-ok response occurred getting Neo4j Data %s: %s", url, err.Error())
-		return nil, errors.New(res.Status)
+		buf := new(bytes.Buffer)
+    buf.ReadFrom(res.Body)
+		Log.Printf("A non-ok response occurred getting Neo4j Data %s: %s", url, buf.String())
+		return nil, errors.New(buf.String())
 	}
 
 	neoData := neo4jData{}
